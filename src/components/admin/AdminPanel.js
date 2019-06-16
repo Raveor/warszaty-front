@@ -17,7 +17,7 @@ class AdminPanel extends Component {
     }
 
     loadReports() {
-        axios.get("/admin/users")
+        axios.get("https://warsztaty-zepsolowe.herokuapp.com/admin/users")
             .then(response => {
                 const users = response.data;
                 const expand = this.state.expand ? this.state.expand : users.length > 0 ? users[0].id : null;
@@ -41,7 +41,7 @@ class AdminPanel extends Component {
     };
 
     setAdmin(_id, admin) {
-        axios.put("/admin/users/admin", {_id: _id, setAdmin: admin})
+        axios.put("https://warsztaty-zepsolowe.herokuapp.com/admin/users/admin", {_id: _id, setAdmin: admin})
             .then(() => {
                 this.loadReports();
             })
@@ -57,7 +57,7 @@ class AdminPanel extends Component {
     };
 
     setActive(_id, active) {
-        axios.put("/admin/users/active", {_id: _id, setActive: active})
+        axios.put("https://warsztaty-zepsolowe.herokuapp.com/admin/users/active", {_id: _id, setActive: active})
             .then(() => {
                 this.loadReports();
             })
@@ -73,7 +73,7 @@ class AdminPanel extends Component {
     };
 
     setContact(_id, contact) {
-        axios.put("/admin/users/contact", {_id: _id, setContact: contact})
+        axios.put("https://warsztaty-zepsolowe.herokuapp.com/admin/users/contact", {_id: _id, setContact: contact})
             .then(() => {
                 this.loadReports();
             })
@@ -89,7 +89,7 @@ class AdminPanel extends Component {
     };
 
     deleteUser(_id) {
-        axios.delete("/admin/users/delete", {data: {_id: _id}})
+        axios.delete("https://warsztaty-zepsolowe.herokuapp.com/admin/users/delete", {data: {_id: _id}})
             .then(() => {
                 this.loadReports();
             })

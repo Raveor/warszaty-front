@@ -52,7 +52,7 @@ class AddNewMember extends Component {
     handleSubmit = e => {
         e.preventDefault();
         if (this.validateForm(this.state.errors)) {
-            axios.post("/clan/attach", {username: this.state.data.name})
+            axios.post("https://warsztaty-zepsolowe.herokuapp.com/clan/attach", {username: this.state.data.name})
                 .then(() => {
                     this.setState({
                         ...this.state,

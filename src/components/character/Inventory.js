@@ -11,7 +11,7 @@ class Inventory extends Component {
     
     componentDidMount = () => {
         axios
-            .get("/shop/inventory")
+            .get("https://warsztaty-zepsolowe.herokuapp.com/shop/inventory")
             .then(response => this.setState({ inventory: response.data }))
             .catch(err => {
                 dispatch({

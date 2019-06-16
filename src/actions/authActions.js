@@ -7,7 +7,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("/auth/register", userData)
+    .post("https://warsztaty-zepsolowe.herokuapp.com/auth/register", userData)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
@@ -20,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Request password reset
 export const resetEmail = (userData, callback) => dispatch => {
   axios
-    .post("/auth/resetPassword", userData)
+    .post("https://warsztaty-zepsolowe.herokuapp.com/auth/resetPassword", userData)
     .then(callback)
     .catch(err =>
       dispatch({
@@ -33,7 +33,7 @@ export const resetEmail = (userData, callback) => dispatch => {
 // Set new password
 export const setPassword = (userData, history, token) => dispatch => {
   axios
-    .post("/auth/setNewPassword?token=" + token, userData)
+    .post("https://warsztaty-zepsolowe.herokuapp.com/auth/setNewPassword?token=" + token, userData)
     .then(res => {
       history.push("/login");
       alert("Password changed!");
@@ -49,7 +49,7 @@ export const setPassword = (userData, history, token) => dispatch => {
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
-    .post("/auth/login", userData)
+    .post("https://warsztaty-zepsolowe.herokuapp.com/auth/login", userData)
     .then(res => {
       // Save to localStorage
 

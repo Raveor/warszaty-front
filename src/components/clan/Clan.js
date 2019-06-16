@@ -51,7 +51,7 @@ class Clan extends Component {
             this.getMembers(clanName);
         } else {
             axios
-                .get("/clan/my")
+                .get("https://warsztaty-zepsolowe.herokuapp.com/clan/my")
                 .then(response => {
                     let clan = response.data;
                     if (clan) {
@@ -90,7 +90,7 @@ class Clan extends Component {
 
     getMembers = async (clanName) => {
         await axios
-            .get("/clan/members", {params: {clanName: clanName}})
+            .get("https://warsztaty-zepsolowe.herokuapp.com/clan/members", {params: {clanName: clanName}})
             .then(response => {
                 let members = response.data;
                 let membersIdArray = members.map(member => member.userId._id);
@@ -113,7 +113,7 @@ class Clan extends Component {
                 }
             );
         await axios
-            .get("/clan/commanders", {params: {clanName: clanName}})
+            .get("https://warsztaty-zepsolowe.herokuapp.com/clan/commanders", {params: {clanName: clanName}})
             .then(response => {
                 let commanders = response.data;
                 commanders = commanders.map(commander => commander.userId);
@@ -140,7 +140,7 @@ class Clan extends Component {
     };
 
     deleteMember(username) {
-        axios.post("/clan/dismiss", {username: username})
+        axios.post("https://warsztaty-zepsolowe.herokuapp.com/clan/dismiss", {username: username})
             .then(() => {
                 this.getMembers(this.state.clanName);
             })
@@ -187,7 +187,7 @@ class Clan extends Component {
         e.preventDefault();
         if (this.validateForm(this.state.errors)) {
             axios
-                .post('/clan/create', this.state.data)
+                .post('https://warsztaty-zepsolowe.herokuapp.com/clan/create', this.state.data)
                 .then(() => {
                     this.setState({
                         ...this.state,
@@ -210,7 +210,7 @@ class Clan extends Component {
     incrementFunc(key, stat, value = 1) {
         let money = this.state.money;
         axios
-            .post("/clan/upgrade/" + key)
+            .post("https://warsztaty-zepsolowe.herokuapp.com/clan/upgrade/" + key)
             .then(response => {
                 this.setState(prevState => ({
                     buildings: {
@@ -228,7 +228,7 @@ class Clan extends Component {
     incrementMoneyFunc(key, stat, value = 1) {
         let newMoney;
         axios
-            .post("/clan/pay", {moneyAmount: value})
+            .post("https://warsztaty-zepsolowe.herokuapp.com/clan/pay", {moneyAmount: value})
             .then(response => {
                 newMoney = response.data.money;
                 this.setState({
@@ -243,7 +243,7 @@ class Clan extends Component {
     }
 
     setCommander(username) {
-        axios.post("/clan/promote", {username: username})
+        axios.post("https://warsztaty-zepsolowe.herokuapp.com/clan/promote", {username: username})
             .then(() => {
                 this.getMembers(this.state.clanName);
             })
@@ -254,7 +254,7 @@ class Clan extends Component {
     }
 
     leave() {
-        axios.post("/clan/leave")
+        axios.post("https://warsztaty-zepsolowe.herokuapp.com/clan/leave")
             .then(() => {
                 this.getMembers(this.state.clanName);
             })

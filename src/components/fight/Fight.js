@@ -27,14 +27,14 @@ class Fight extends Component {
     loadMyCharacter(){
         this.setState( { loading: true });
 
-        axios.get('/character')
+        axios.get('https://warsztaty-zepsolowe.herokuapp.com/character')
             .then( result => {
                 console.log(result.data.character.currentHealth);
                 this.setState( () => {
                     return { myCharacter: result.data.character, myDamage: result.data.character.statistics.strength, myDefense: result.data.character.statistics.agility };
                 });
 
-                axios.get('/shop/inventory')
+                axios.get('https://warsztaty-zepsolowe.herokuapp.com/shop/inventory')
                     .then(response => this.setState({ inventory: response.data }))
                     .then( () => {
                         if (this.state.inventory) {
@@ -60,7 +60,7 @@ class Fight extends Component {
 
     loadCharacters = async() => {
         let ids = [];
-        await axios.get('/users/available')
+        await axios.get('https://warsztaty-zepsolowe.herokuapp.com/users/available')
             .then( result => {
                 for(let user in result.data){
                     ids.push(String(user));
@@ -72,7 +72,7 @@ class Fight extends Component {
 
             });
 
-        axios.get('/character/others')
+        axios.get('https://warsztaty-zepsolowe.herokuapp.com/character/others')
             .then( res => {
                 let enemies = [];
                 let enemiesMap = new Map();
@@ -140,14 +140,14 @@ class Fight extends Component {
     lost(my, damage, exp) {
         alert("You lost " + damage + "hp! \nBut gained " + exp + " exp!");
 
-        axios.put('/character',  my);
+        axios.put('https://warsztaty-zepsolowe.herokuapp.com/character',  my);
         this.loadMyCharacter();
     }
 
     won(my, damage, exp, money){
         alert("You won! Exp gained: " + exp + " Money gained: " + money + "!\n Damage taken: " + damage + "!");
 
-        axios.put('/character', my );
+        axios.put('https://warsztaty-zepsolowe.herokuapp.com/character', my );
         this.loadMyCharacter();
     }
 

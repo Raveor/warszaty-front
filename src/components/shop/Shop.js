@@ -16,10 +16,10 @@ class Shop extends Component {
 
     pullData = () => {
         axios.all([
-            axios.get('/shop/weapons'),
-            axios.get('/shop/outfits'),
-            axios.get('/shop/inventory'),
-            axios.get('/character'),
+            axios.get('https://warsztaty-zepsolowe.herokuapp.com/shop/weapons'),
+            axios.get('https://warsztaty-zepsolowe.herokuapp.com/shop/outfits'),
+            axios.get('https://warsztaty-zepsolowe.herokuapp.com/shop/inventory'),
+            axios.get('https://warsztaty-zepsolowe.herokuapp.com/character'),
         ])
             .then((response) => {
                 const weapons = response[0].data;
@@ -46,7 +46,7 @@ class Shop extends Component {
 
     buyWeapon = (weapon) => {
         axios
-            .post('/shop/weapons/buy', {weaponId: weapon.weaponId})
+            .post('https://warsztaty-zepsolowe.herokuapp.com/shop/weapons/buy', {weaponId: weapon.weaponId})
             .then(() => {
                 this.pullData();
             })
@@ -62,7 +62,7 @@ class Shop extends Component {
 
     buyOutfit = (outfit) => {
         axios
-            .post('/shop/outfits/buy', {outfitId: outfit.outfitId})
+            .post('https://warsztaty-zepsolowe.herokuapp.com/shop/outfits/buy', {outfitId: outfit.outfitId})
             .then(() => {
                 this.pullData();
             })
@@ -78,7 +78,7 @@ class Shop extends Component {
 
     sellItem = (item) => {
         axios
-            .post('/shop/inventory/sell', {itemId: item._id})
+            .post('https://warsztaty-zepsolowe.herokuapp.com/shop/inventory/sell', {itemId: item._id})
             .then(() => {
                 this.pullData();
             })

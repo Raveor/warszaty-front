@@ -16,7 +16,7 @@ class ExpeditionSelectList extends Component {
 
     reloadExpeditions = async () => {
         try {
-            const response = await axios.get("/expeditions/available");
+            const response = await axios.get("https://warsztaty-zepsolowe.herokuapp.com/expeditions/available");
             // console.log(JSON.stringify(response, null, 2));
             const expeditions = response.data;
             // console.log(JSON.stringify(expeditions, null, 2));
@@ -45,7 +45,7 @@ class ExpeditionSelectList extends Component {
 
     goFunc = async expeditionId => {
         try {
-            await axios.post("/expeditions/go", { expeditionId });
+            await axios.post("https://warsztaty-zepsolowe.herokuapp.com/expeditions/go", { expeditionId });
         } catch (error) {
             console.log(error);
             alert("There was a problem processing your action")

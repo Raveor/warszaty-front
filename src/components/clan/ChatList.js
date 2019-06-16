@@ -33,7 +33,7 @@ class ChatList extends Component {
 
     reload() {
         axios
-            .get('/clan/chat')
+            .get('https://warsztaty-zepsolowe.herokuapp.com/clan/chat')
             .then((response) => {
                 const messages = response.data;
                 this.setState({
@@ -88,7 +88,7 @@ class ChatList extends Component {
         e.preventDefault();
         if (this.validateForm(this.state.errors)) {
             axios
-                .post('/clan/chat/add', this.state.data)
+                .post('https://warsztaty-zepsolowe.herokuapp.com/clan/chat/add', this.state.data)
                 .then(() => {
                     this.setState({
                         ...this.state,

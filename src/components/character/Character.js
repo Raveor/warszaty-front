@@ -16,7 +16,7 @@ class Character extends Component {
 
     componentDidMount() {
         axios
-            .get('/character')
+            .get('https://warsztaty-zepsolowe.herokuapp.com/character')
             .then((response) => {
                 const character = response.data.character;
                 const actualStatistics = character.statistics;
@@ -82,7 +82,7 @@ class Character extends Component {
 
     sendNewStatistics() {
         axios
-            .put('character', this.state.character)
+            .put('https://warsztaty-zepsolowe.herokuapp.com/character', this.state.character)
             .then(() => {
                 let actualStatistics = this.state.character.statistics;
                 let character = this.state.character;

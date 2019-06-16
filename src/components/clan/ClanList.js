@@ -18,7 +18,7 @@ class ClanList extends Component {
 
     componentDidMount() {
         axios
-            .get('/clan/')
+            .get('https://warsztaty-zepsolowe.herokuapp.com/clan/')
             .then((response) => {
                 const clans = response.data;
                 this.setState({

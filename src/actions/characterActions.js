@@ -3,7 +3,7 @@ import {GET_ERRORS} from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
     axios
-        .post("/character", userData)
+        .post("https://warsztaty-zepsolowe.herokuapp.com/character", userData)
         .then(res => history.push("/login"))
         .catch(err =>
             dispatch({
@@ -15,7 +15,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 export const getCharacter = (history) => dispatch => {
     axios
-        .get("/character")
+        .get("https://warsztaty-zepsolowe.herokuapp.com/character")
         .then(res => history.push("/character"))
         .catch(err =>
             dispatch({
